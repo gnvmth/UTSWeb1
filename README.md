@@ -12,7 +12,7 @@
 | **Mata Kuliah** | Pemrograman Web |
 | **Dosen Pengampu** | Agung Nugroho, S.Kom., M.Kom. |
 | **Tugas** | Ujian Tengah Semester (UTS) |
-| **Link Video Penjelasan (YouTube)** | [[ISI: tempel link YouTube](https://youtu.be/Vd9J1m3Qy-w?si=KicSv_Npc8yal7NK)] |
+| **Link Video Penjelasan (YouTube)** | [(https://youtu.be/Vd9J1m3Qy-w?si=KicSv_Npc8yal7NK)] |
 
 ## Deskripsi Proyek
 
