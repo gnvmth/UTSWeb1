@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Informasi stok dan katalog buku Toko Buku Libréa.">
+  <meta name="theme-color" content="#5B3F2E">
+  <title>Katalog Stok - Toko Buku Libréa</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%235B3F2E'/%3E%3Crect x='6' y='9' width='5' height='15' rx='1' fill='%23F7F0E7'/%3E%3Crect x='13.5' y='6' width='5' height='18' rx='1' fill='%23CFB59C'/%3E%3Crect x='21' y='11' width='5' height='13' rx='1' fill='%23A38368'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="stok">
+<a class="lewati" href="#konten">Lewati ke konten utama</a>
+<header class="site-header">
+  <div class="wadah header-in">
+    <a class="brand" href="dashboard.html" aria-label="Toko Buku Libréa, ke dashboard">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect class="l-bg" width="32" height="32" rx="9"/><rect class="l-1" x="6" y="9" width="5" height="15" rx="1"/><rect class="l-2" x="13.5" y="6" width="5" height="18" rx="1"/><rect class="l-3" x="21" y="11" width="5" height="13" rx="1"/></svg>
+      <span class="brand-teks"><span class="brand-nama">Libréa</span><span class="brand-sub">Toko Buku</span></span>
+    </a>
+    <button class="btn btn-garis kecil nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Navigasi utama">
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="stok.html" aria-current="page">Stok/Katalog</a></li>
+        <li><a href="checkout.html">Pemesanan</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+      </ul>
+      <div class="aksi-user">
+        <span class="avatar" id="avatar" aria-hidden="true"></span>
+        <a href="#" id="logout" class="btn btn-garis kecil">Logout</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<main id="konten">
+  <header class="judul-halaman">
+    <div class="wadah">
+      <div>
+        <h1>Informasi Stok / Katalog</h1>
+        <p>Pantau ketersediaan buku, cari judul, atau tambahkan baris stok baru lewat form di bawah tabel.</p>
+        <a class="btn kecil judul-aksi" href="#h-tambah">Tambah stok baru</a>
+      </div>
+      <ul class="ringkas" aria-label="Ringkasan status stok">
+        <li><strong id="nTersedia">0</strong> Tersedia</li>
+        <li><strong id="nTipis">0</strong> Tipis</li>
+        <li><strong id="nHabis">0</strong> Habis</li>
+      </ul>
+    </div>
+  </header>
+  <div class="wadah isi">
+    <section class="card" aria-label="Daftar buku">
+      <div class="toolbar">
+        <div class="field"><label for="cari">Cari buku</label><input id="cari" type="search" placeholder="Ketik kode atau judul buku"></div>
+        <div class="field sempit"><label for="filterStatus">Status stok</label><select id="filterStatus"><option value="">Semua status</option><option value="tersedia">Tersedia</option><option value="tipis">Tipis</option><option value="habis">Habis</option></select></div>
+      </div>
+      <p class="info-hasil" id="infoHasil" aria-live="polite"></p>
+      <div class="tabel-wrap"><table class="tabel-stok"><caption class="sr-only">Daftar stok buku</caption><thead><tr><th>Cover</th><th>Kode</th><th>Nama barang</th><th>Jenis</th><th>Edisi</th><th>Harga</th><th>Stok</th><th>Aksi</th></tr></thead><tbody id="tbodyStok"></tbody></table></div>
+      <p class="kosong-teks" id="kosongStok" hidden>Tidak ada buku yang cocok. Ubah kata kunci atau filter status.</p>
+    </section>
+
+    <section class="card" aria-labelledby="h-tambah">
+      <h2 id="h-tambah">Tambah stok baru</h2>
+      <p class="petunjuk">Isi semua kolom, lalu klik Tambah ke tabel. Baris baru langsung muncul di tabel di atas.</p>
+      <form id="formStok" novalidate>
+        <div class="form-grid">
+          <div class="field"><label for="kode">Kode barang</label><input id="kode" placeholder="contoh: EKMA4115"><p class="pesan-error"></p></div>
+          <div class="field"><label for="nama">Nama barang</label><input id="nama"><p class="pesan-error"></p></div>
+          <div class="field"><label for="jenis">Jenis barang</label><select id="jenis"><option value="">-- pilih --</option><option>Buku Ajar</option><option>Modul</option><option>Lainnya</option></select><p class="pesan-error"></p></div>
+          <div class="field"><label for="edisi">Edisi</label><input id="edisi" type="number" min="1"><p class="pesan-error"></p></div>
+          <div class="field"><label for="harga">Harga (Rp)</label><input id="harga" type="number" min="1"><p class="pesan-error"></p></div>
+          <div class="field"><label for="stok">Jumlah stok</label><input id="stok" type="number" min="0"><p class="pesan-error"></p></div>
+        </div>
+        <button class="btn" type="submit">Tambah ke tabel</button>
+      </form>
+    </section>
+  </div>
+</main>
+<footer class="footer">
+  <div class="wadah footer-grid">
+    <div>
+      <a class="brand" href="dashboard.html" aria-label="Toko Buku Libréa"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect class="l-bg" width="32" height="32" rx="9"/><rect class="l-1" x="6" y="9" width="5" height="15" rx="1"/><rect class="l-2" x="13.5" y="6" width="5" height="18" rx="1"/><rect class="l-3" x="21" y="11" width="5" height="13" rx="1"/></svg><span class="brand-teks"><span class="brand-nama">Libréa</span><span class="brand-sub">Toko Buku</span></span></a>
+      <p>Toko buku online untuk kebutuhan kuliah. Dari memilih buku sampai paket tiba, semuanya ada di satu tempat.</p>
+    </div>
+    <nav aria-label="Tautan cepat">
+      <h2>Jelajahi</h2>
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="stok.html">Katalog dan stok</a></li>
+        <li><a href="checkout.html">Pemesanan</a></li>
+        <li><a href="tracking.html">Tracking pengiriman</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h2>Layanan pelanggan</h2>
+      <ul>
+        <li>Senin sampai Jumat, 08.00 - 17.00 WIB</li>
+        <li>halo@librea.example</li>
+        <li>(021) 555-0123</li>
+        <li>Jl. Pustaka No. 12, Jakarta</li>
+      </ul>
+    </div>
+  </div>
+  <p class="hak-cipta">&copy; 2026 Toko Buku Libréa. Dibuat untuk UTS Pemrograman Web 1.</p>
+</footer>
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-label="Kotak dialog">
+  <div class="modal-box"><button class="close" data-close aria-label="Tutup">&times;</button><div id="modalBody"></div></div>
+</div>
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

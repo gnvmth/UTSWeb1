@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Login ke Toko Buku Libréa untuk memesan buku kuliah dan memantau pengirimannya.">
+  <meta name="theme-color" content="#5B3F2E">
+  <title>Login - Toko Buku Libréa</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%235B3F2E'/%3E%3Crect x='6' y='9' width='5' height='15' rx='1' fill='%23F7F0E7'/%3E%3Crect x='13.5' y='6' width='5' height='18' rx='1' fill='%23CFB59C'/%3E%3Crect x='21' y='11' width='5' height='13' rx='1' fill='%23A38368'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="login">
+<main class="masuk" id="konten">
+  <section class="masuk-form" aria-labelledby="jdl">
+    <div class="form-kotak">
+      <a class="brand" href="index.html" aria-label="Toko Buku Libréa"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect class="l-bg" width="32" height="32" rx="9"/><rect class="l-1" x="6" y="9" width="5" height="15" rx="1"/><rect class="l-2" x="13.5" y="6" width="5" height="18" rx="1"/><rect class="l-3" x="21" y="11" width="5" height="13" rx="1"/></svg><span class="brand-teks"><span class="brand-nama">Libréa</span><span class="brand-sub">Toko Buku</span></span></a>
+      <h1 id="jdl">Login</h1>
+      <p class="sub">Isi email dan password untuk melanjutkan ke dashboard.</p>
+      <form id="formLogin" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" autocomplete="username" placeholder="nama@email.com">
+          <p class="pesan-error" id="err-email"></p>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="input-grup">
+            <input type="password" id="password" autocomplete="current-password">
+            <button type="button" class="tampil-pw" id="tglPw" aria-pressed="false" aria-label="Tampilkan password">Lihat</button>
+          </div>
+          <p class="pesan-error" id="err-password"></p>
+        </div>
+        <button class="btn btn-penuh" type="submit">Login</button>
+      </form>
+      <p class="atau">Butuh bantuan akun?</p>
+      <div class="row">
+        <button class="btn btn-garis" id="btnLupa" type="button">Lupa Password</button>
+        <button class="btn btn-garis" id="btnDaftar" type="button">Daftar</button>
+      </div>
+    </div>
+  </section>
+  <section class="masuk-visual gelap" aria-label="Tentang Toko Buku Libréa">
+    <div class="visual-isi">
+      <p class="wordmark"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect class="l-bg" width="32" height="32" rx="9"/><rect class="l-1" x="6" y="9" width="5" height="15" rx="1"/><rect class="l-2" x="13.5" y="6" width="5" height="18" rx="1"/><rect class="l-3" x="21" y="11" width="5" height="13" rx="1"/></svg>Libréa</p>
+      <h2>Buku kuliah, sampai ke pintu rumah.</h2>
+      <p>Pilih dari katalog buku ajar, bayar lewat transfer, e-wallet, atau COD, lalu pantau paketnya dengan nomor Delivery Order.</p>
+      <ul class="poin">
+        <li>Cek katalog dan stok buku</li>
+        <li>Buat pesanan dan isi data pembayaran</li>
+        <li>Lacak paket dengan nomor Delivery Order</li>
+      </ul>
+    </div>
+    <ul class="rak" aria-hidden="true">
+    <li class="punggung" style="--tinggi:86%;--lebar:58px;--warna:var(--pasir);--teks:var(--mocha);--n:0"><span>Pengantar Ilmu Komunikasi</span></li>
+    <li class="punggung" style="--tinggi:70%;--lebar:50px;--warna:var(--karamel);--teks:var(--mocha-gelap);--n:1"><span>Manajemen Keuangan</span></li>
+    <li class="punggung" style="--tinggi:94%;--lebar:62px;--warna:var(--krim);--teks:var(--mocha);--n:2"><span>Kepemimpinan</span></li>
+    <li class="punggung" style="--tinggi:76%;--lebar:54px;--warna:var(--mocha-muda);--teks:var(--krim);--n:3"><span>Mikrobiologi Dasar</span></li>
+    <li class="punggung" style="--tinggi:90%;--lebar:66px;--warna:var(--latte);--teks:var(--mocha);--n:4"><span>Perkembangan Anak Usia Dini</span></li>
+    <li class="punggung condong" style="--tinggi:64%;--lebar:46px;--warna:var(--pasir);--teks:var(--mocha);--n:5"><span>Libréa</span></li>
+  </ul>
+  </section>
+</main>
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-label="Kotak dialog">
+  <div class="modal-box"><button class="close" data-close aria-label="Tutup">&times;</button><div id="modalBody"></div></div>
+</div>
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

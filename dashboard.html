@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Dashboard Toko Buku Libréa: katalog, pemesanan, tracking pengiriman, dan history transaksi.">
+  <meta name="theme-color" content="#5B3F2E">
+  <title>Dashboard - Toko Buku Libréa</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%235B3F2E'/%3E%3Crect x='6' y='9' width='5' height='15' rx='1' fill='%23F7F0E7'/%3E%3Crect x='13.5' y='6' width='5' height='18' rx='1' fill='%23CFB59C'/%3E%3Crect x='21' y='11' width='5' height='13' rx='1' fill='%23A38368'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* CSS internal: gaya khusus halaman dashboard (hero berbentuk rak buku) */
+    .hero{border-bottom:14px solid var(--karamel);overflow:hidden}
+    .hero-in{display:grid;grid-template-columns:1.05fr .95fr;gap:2rem;align-items:end;padding-top:3.4rem}
+    .hero-teks{padding-bottom:3.6rem}
+    .hero h1{color:var(--krim);font-size:clamp(2.1rem,4.6vw,3.5rem);margin-bottom:.8rem}
+    .hero-teks p{color:var(--pasir);max-width:46ch}
+    .chip-peran{display:inline-block;background:rgba(247,240,231,.14);border:1px solid var(--karamel);border-radius:999px;padding:.2rem .9rem;font-size:.88rem;font-weight:600;margin-bottom:1.1rem}
+    .hero-aksi{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.6rem}
+    .hero .rak{--rak-tinggi:340px;padding:0}
+    @media(max-width:960px){.hero-in{grid-template-columns:1fr;padding-top:2.4rem}.hero-teks{padding-bottom:1.5rem}.hero .rak{--rak-tinggi:220px}}
+  </style>
+</head>
+<body data-page="dashboard">
+<a class="lewati" href="#konten">Lewati ke konten utama</a>
+<header class="site-header">
+  <div class="wadah header-in">
+    <a class="brand" href="dashboard.html" aria-label="Toko Buku Libréa, ke dashboard">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect class="l-bg" width="32" height="32" rx="9"/><rect class="l-1" x="6" y="9" width="5" height="15" rx="1"/><rect class="l-2" x="13.5" y="6" width="5" height="18" rx="1"/><rect class="l-3" x="21" y="11" width="5" height="13" rx="1"/></svg>
+      <span class="brand-teks"><span class="brand-nama">Libréa</span><span class="brand-sub">Toko Buku</span></span>
+    </a>
+    <button class="btn btn-garis kecil nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Navigasi utama">
+      <ul>
+        <li><a href="dashboard.html" aria-current="page">Dashboard</a></li>
+        <li><a href="stok.html">Stok/Katalog</a></li>
+        <li><a href="checkout.html">Pemesanan</a></li>
+        <li><a href="tracking.html">Tracking</a></li>
+      </ul>
+      <div class="aksi-user">
+        <span class="avatar" id="avatar" aria-hidden="true"></span>
+        <a href="#" id="logout" class="btn btn-garis kecil">Logout</a>
+      </div>
+    </nav>
+  </div>
+</header>
+<main id="konten">
+  <section class="hero gelap" aria-labelledby="greeting">
+    <div class="wadah hero-in">
+      <div class="hero-teks">
+        <span class="chip-peran" id="chipPeran">Login sebagai User</span>
+        <h1 class="greeting" id="greeting">Halo!</h1>
+        <p id="jam">Pilih menu di bawah untuk memulai.</p>
+        <div class="hero-aksi">
+          <a class="btn btn-terang" href="checkout.html">Mulai pesan buku</a>
+          <a class="btn btn-garis-terang" href="tracking.html">Lacak paket</a>
+        </div>
+      </div>
+      <ul class="rak" aria-hidden="true">
+    <li class="punggung" style="--tinggi:86%;--lebar:58px;--warna:var(--pasir);--teks:var(--mocha);--n:0"><span>Pengantar Ilmu Komunikasi</span></li>
+    <li class="punggung" style="--tinggi:70%;--lebar:50px;--warna:var(--karamel);--teks:var(--mocha-gelap);--n:1"><span>Manajemen Keuangan</span></li>
+    <li class="punggung" style="--tinggi:94%;--lebar:62px;--warna:var(--krim);--teks:var(--mocha);--n:2"><span>Kepemimpinan</span></li>
+    <li class="punggung" style="--tinggi:76%;--lebar:54px;--warna:var(--mocha-muda);--teks:var(--krim);--n:3"><span>Mikrobiologi Dasar</span></li>
+    <li class="punggung" style="--tinggi:90%;--lebar:66px;--warna:var(--latte);--teks:var(--mocha);--n:4"><span>Perkembangan Anak Usia Dini</span></li>
+    <li class="punggung condong" style="--tinggi:64%;--lebar:46px;--warna:var(--pasir);--teks:var(--mocha);--n:5"><span>Libréa</span></li>
+  </ul>
+    </div>
+  </section>
+
+  <div class="wadah">
+    <dl class="stat" aria-label="Ringkasan toko">
+      <div><dt>Judul buku</dt><dd id="statJudul">0</dd></div>
+      <div><dt>Total eksemplar</dt><dd id="statStok">0</dd></div>
+      <div><dt>Pesanan tercatat</dt><dd id="statPesanan">0</dd></div>
+      <div><dt>Sedang dikirim</dt><dd id="statJalan">0</dd></div>
+    </dl>
+
+    <section class="bagian" aria-labelledby="h-menu">
+      <div class="bagian-kepala"><h2 id="h-menu">Menu Utama</h2><p>Pilih salah satu menu untuk memulai.</p></div>
+      <div class="menu">
+        <a class="menu-card" href="stok.html"><span class="ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></span><h3>Informasi Stok / Katalog</h3><p>Lihat daftar buku, cek ketersediaan, dan tambah stok baru.</p></a>
+        <a class="menu-card" href="tracking.html"><span class="ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17h4V5H2v12h3"/><path d="M14 8h4l4 4v5h-3"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg></span><h3>Tracking Pengiriman</h3><p>Cari paket dengan nomor Delivery Order dan lihat statusnya.</p></a>
+        <a class="menu-card" href="checkout.html"><span class="ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></span><h3>Laporan Pemesanan</h3><p>Pilih buku, ubah jumlah, dan isi data pemesan.</p></a>
+        <button class="menu-card" id="btnRiwayat" type="button"><span class="ikon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg></span><h3>History Transaksi</h3><p>Lihat semua pesanan yang pernah dibuat.</p></button>
+      </div>
+    </section>
+
+    <section class="bagian" aria-labelledby="h-katalog">
+      <div class="bagian-kepala"><h2 id="h-katalog">Katalog pilihan</h2><a href="stok.html">Lihat semua stok</a></div>
+      <div class="katalog" id="katalogPilihan"></div>
+    </section>
+
+    <section class="bagian" aria-labelledby="h-langkah">
+      <div class="bagian-kepala"><h2 id="h-langkah">Cara belanja di Libréa</h2></div>
+      <ol class="langkah">
+        <li><h3>Pilih buku</h3><p>Telusuri katalog, lalu tambahkan judul dan jumlahnya ke pesanan.</p></li>
+        <li><h3>Isi data dan bayar</h3><p>Lengkapi alamat, pilih ekspedisi dan metode pembayaran.</p></li>
+        <li><h3>Lacak paket</h3><p>Pantau status dan perjalanan paket dengan nomor Delivery Order.</p></li>
+      </ol>
+    </section>
+
+    <section class="bagian" aria-labelledby="h-faq">
+      <div class="bagian-kepala"><h2 id="h-faq">Pertanyaan yang sering diajukan</h2></div>
+      <div class="faq">
+        <details><summary>Bagaimana cara melacak pesanan saya?</summary><p>Buka menu Tracking dan masukkan nomor Delivery Order (DO). Nomor ini muncul saat pesanan berhasil dibuat, dan semua nomor tersimpan di History Transaksi.</p></details>
+        <details><summary>Metode pembayaran apa yang tersedia?</summary><p>Transfer bank, e-wallet, dan bayar di tempat (COD). Pilih salah satunya saat mengisi data pemesan.</p></details>
+        <details><summary>Ekspedisi apa saja yang bisa dipilih?</summary><p>JNE, Pos Indonesia, J&amp;T Express, dan SiCepat.</p></details>
+        <details><summary>Apa arti label Tipis pada stok?</summary><p>Label Tipis muncul saat stok kurang dari 200 eksemplar. Stok 0 ditandai Habis dan tidak bisa dipesan.</p></details>
+      </div>
+    </section>
+  </div>
+</main>
+<footer class="footer">
+  <div class="wadah footer-grid">
+    <div>
+      <a class="brand" href="dashboard.html" aria-label="Toko Buku Libréa"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect class="l-bg" width="32" height="32" rx="9"/><rect class="l-1" x="6" y="9" width="5" height="15" rx="1"/><rect class="l-2" x="13.5" y="6" width="5" height="18" rx="1"/><rect class="l-3" x="21" y="11" width="5" height="13" rx="1"/></svg><span class="brand-teks"><span class="brand-nama">Libréa</span><span class="brand-sub">Toko Buku</span></span></a>
+      <p>Toko buku online untuk kebutuhan kuliah. Dari memilih buku sampai paket tiba, semuanya ada di satu tempat.</p>
+    </div>
+    <nav aria-label="Tautan cepat">
+      <h2>Jelajahi</h2>
+      <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="stok.html">Katalog dan stok</a></li>
+        <li><a href="checkout.html">Pemesanan</a></li>
+        <li><a href="tracking.html">Tracking pengiriman</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h2>Layanan pelanggan</h2>
+      <ul>
+        <li>Senin sampai Jumat, 08.00 - 17.00 WIB</li>
+        <li>halo@librea.example</li>
+        <li>(021) 555-0123</li>
+        <li>Jl. Pustaka No. 12, Jakarta</li>
+      </ul>
+    </div>
+  </div>
+  <p class="hak-cipta">&copy; 2026 Toko Buku Libréa. Dibuat untuk UTS Pemrograman Web 1.</p>
+</footer>
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-label="Kotak dialog">
+  <div class="modal-box"><button class="close" data-close aria-label="Tutup">&times;</button><div id="modalBody"></div></div>
+</div>
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
